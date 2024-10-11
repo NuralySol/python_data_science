@@ -1,2 +1,6 @@
 # ignore all of the png files in this project
 *.png
+# ignore the mp4 file of the plot output.
+top_10_countries_population.mp4
+top_10_countries_population_vertical.mp4
+western_europe_population_race.mp4

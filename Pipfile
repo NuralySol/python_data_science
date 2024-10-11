@@ -11,6 +11,7 @@ numpy = "*"
 tensorflow = "*"
 pyqt5 = "*"
 matplotlib = "*"
+scipy = "*"
 
 [dev-packages]
 

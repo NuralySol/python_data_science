@@ -63,5 +63,5 @@ for bar in bars:
 
 # Show the plot
 plt.tight_layout()
-plt.savefig("taiwan_population_change_bar_annotated.png")
+plt.savefig("taiwan_population_change_bar_annotated.png") # you can specify the path for dir/path
 plt.show()

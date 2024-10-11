@@ -296,7 +296,7 @@ while True:
     if continue_input != "yes":
         break
 
-#! make a DF froma dict. resulting df will one row of each item!
+#! make a DF from a dict. resulting df will one row of each item!
 import pandas as pd
 
 # Create DataFrame from a dictionary
@@ -327,3 +327,71 @@ df = pd.concat([df, new_df], ignore_index=True)
 
 print("\nDataFrame after Concatenation:")
 print(df)
+
+import pandas as pd
+import logging
+
+# Configure logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
+# Create an initial DataFrame
+df = pd.DataFrame(columns=['Name', 'Age'])
+
+def log_dataframe_change(operation, df):
+    logging.info(f"{operation} performed. Updated DataFrame:\n{df}")
+
+# Adding initial data
+new_row = {'Name': 'John', 'Age': 30}
+df = df.append(new_row, ignore_index=True)
+log_dataframe_change("Row added", df)
+
+# Adding another row
+new_row = {'Name': 'Mary', 'Age': 25}
+df = df.append(new_row, ignore_index=True)
+log_dataframe_change("Row added", df)
+
+# Dropping a row using inplace=True
+# The 'inplace=True' modifies the DataFrame in place, meaning the changes happen directly on the DataFrame without needing reassignment.
+df.drop(1, inplace=True)  # Dropping the row at index 1 (Mary's row)
+log_dataframe_change("Row deleted for Mary", df)
+
+# Adding a new column
+df['City'] = ['New York']
+log_dataframe_change("City column added", df)
+
+
+#! Multi-level sort, and column sort. 
+import pandas as pd
+
+# Create a multi-level column DataFrame
+arrays = [
+    ['Score', 'Score', 'Grade', 'Grade'],
+    ['Math', 'Science', 'Math', 'Science']
+]
+columns = pd.MultiIndex.from_arrays(arrays, names=('Category', 'Subject'))
+
+# Create sample data
+data = [
+    [85, 90, 'B', 'A'],
+    [78, 88, 'C', 'B'],
+    [92, 80, 'A', 'B']
+]
+
+df = pd.DataFrame(data, columns=columns)
+
+# Display the original DataFrame
+print("\nOriginal DataFrame:")
+print(df)
+
+# Sort by 'Score' level, 'Math' subject
+sorted_df = df.sort_values(by=('Score', 'Math'))
+
+print("\nDataFrame sorted by Score -> Math:")
+print(sorted_df)
+
+# Sort by multiple levels ('Grade' -> 'Science', and 'Score' -> 'Math')
+sorted_multi_df = df.sort_values(by=[('Grade', 'Science'), ('Score', 'Math')])
+
+print("\nDataFrame sorted by Grade -> Science and Score -> Math:")
+print(sorted_multi_df)
+
